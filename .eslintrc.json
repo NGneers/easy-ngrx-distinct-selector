@@ -3,7 +3,7 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "ignorePatterns": ["*spec.ts", "tools/**/*"],
+  "ignorePatterns": ["*spec.ts", "tools/**/*", "src/test.ts"],
   "rules": {
     "switch-colon-spacing": "warn"
   }
