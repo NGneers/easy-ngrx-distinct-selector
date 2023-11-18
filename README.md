@@ -1,3 +1,6 @@
+[![npm](https://img.shields.io/npm/v/easy-ngrx-distinct-selector?color=%2300d26a&style=for-the-badge)](https://www.npmjs.com/package/easy-ngrx-distinct-selector)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/easy-ngrx-distinct-selector?color=%23FF006F&label=Bundle%20Size&style=for-the-badge)](https://bundlephobia.com/package/easy-ngrx-distinct-selector)
+
 # easy-ngrx-distinct-selector
 
 Provides functions to easily create @ngrx/store selectors with equal functions for arguments and result values.
