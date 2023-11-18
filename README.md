@@ -1,4 +1,5 @@
 [![npm](https://img.shields.io/npm/v/easy-ngrx-distinct-selector?color=%2300d26a&style=for-the-badge)](https://www.npmjs.com/package/easy-ngrx-distinct-selector)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/NGneers/easy-ngrx-distinct-selector/build.yml?branch=main&style=for-the-badge)](https://github.com/NGneers/easy-ngrx-distinct-selector/actions/workflows/build.yml)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/easy-ngrx-distinct-selector?color=%23FF006F&label=Bundle%20Size&style=for-the-badge)](https://bundlephobia.com/package/easy-ngrx-distinct-selector)
 
 # easy-ngrx-distinct-selector
