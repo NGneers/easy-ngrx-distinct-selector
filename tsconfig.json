@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "baseUrl": "./",
+    "lib": ["ES2022", "ESNext", "dom"],
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "./src",
+    "strict": true,
+    "types": ["node"],
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "strictPropertyInitialization": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "stripInternal": true
+  },
+  "include": ["src"],
+  "exclude": ["dist", "**/*.spec.ts", "./src/test.ts"]
+}
