@@ -32,7 +32,7 @@ This library provides a way to easily create selectors with custom memoize funct
 ## Usage Example 🚀
 
 ```ts
-import { createDistinctSelector } from 'easy-ngrx-distinct-selector';
+import { createDistinctSelector } from '@ngneers/easy-ngrx-distinct-selector';
 
 import { AppState } from './app.state';
 
