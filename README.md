@@ -1,6 +1,6 @@
-[![npm](https://img.shields.io/npm/v/easy-ngrx-distinct-selector?color=%2300d26a&style=for-the-badge)](https://www.npmjs.com/package/easy-ngrx-distinct-selector)
+[![npm](https://img.shields.io/npm/v/@ngneers/easy-ngrx-distinct-selector?color=%2300d26a&style=for-the-badge)](https://www.npmjs.com/package/@ngneers/easy-ngrx-distinct-selector)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/NGneers/easy-ngrx-distinct-selector/build.yml?branch=main&style=for-the-badge)](https://github.com/NGneers/easy-ngrx-distinct-selector/actions/workflows/build.yml)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/easy-ngrx-distinct-selector?color=%23FF006F&label=Bundle%20Size&style=for-the-badge)](https://bundlephobia.com/package/easy-ngrx-distinct-selector)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@ngneers/easy-ngrx-distinct-selector?color=%23FF006F&label=Bundle%20Size&style=for-the-badge)](https://bundlephobia.com/package/@ngneers/easy-ngrx-distinct-selector)
 
 # easy-ngrx-distinct-selector
 
@@ -40,14 +40,14 @@ import { AppState } from './app.state';
 // Meaning that the memoize functions use the equality operator (===)
 const selectBookCount1 = createDistinctSelector(
   (state: AppState) => state.book,
-  (book) => book.count,
+  book => book.count
 );
 
 // With custom result equality function
 const selectBookNames = createDistinctSelector(
   (state: AppState) => state.book,
-  (book) => book.names,
-  { resultEqual: (oldNames, newNames) => arraysEqual(oldNames, newNames) },
+  book => book.names,
+  { resultEqual: (oldNames, newNames) => arraysEqual(oldNames, newNames) }
 );
 
 // With custom arguments equality function
@@ -56,44 +56,42 @@ const selectBookNames = createDistinctSelector(
 const selectFilteredBookNames1 = createDistinctSelector(
   (state: AppState) => state.book.names,
   (state: AppState) => state.book.filter,
-  (names, filter) => names.filter((name) => name.includes(filter)),
+  (names, filter) => names.filter(name => name.includes(filter)),
   {
     argsEqual: ([oldNames, oldFilter], [newNames, newFilter]) => {
       return arraysEqual(oldNames, newNames) && oldFilter === newFilter;
     },
-  },
+  }
 );
 
 // Parameterized selectors are also supported
 function selectFilteredBookNames2(props: { filter: string }) {
-  return  createDistinctSelector(
+  return createDistinctSelector(
     (state: AppState) => state.book.names,
-    (names) => names.filter((name) => name.includes(props.filter)),
+    names => names.filter(name => name.includes(props.filter)),
     {
       argsEqual: ([oldNames], [newNames]) => {
         return arraysEqual(oldNames, newNames);
       },
-    },
+    }
   );
 }
 
 // Unlike `createSelector `, `createDistinctSelector` also accepts direct projection of the state
-const selectBookCount2 = createDistinctSelector(
-  (state: AppState) => state.book.count,
-);
+const selectBookCount2 = createDistinctSelector((state: AppState) => state.book.count);
 
 // ... that also supports custom memoize functions
-const selectBookCount3 = createDistinctSelector(
-  (state: AppState) => state.book.count,
-  { argsEqual: ([oldState], [newState]) => oldState.book.count === newState.book.count },
-);
+const selectBookCount3 = createDistinctSelector((state: AppState) => state.book.count, {
+  argsEqual: ([oldState], [newState]) => oldState.book.count === newState.book.count,
+});
 
 // Utility functions for selectors
 function arraysEqual<T>(oldArray: T[], newArray: T[]): boolean {
-  return oldArray.length !== newArray.length &&
-    oldArray.every((value, index) => value === newArray[index]);
+  return (
+    oldArray.length !== newArray.length &&
+    oldArray.every((value, index) => value === newArray[index])
+  );
 }
-
 ```
 
 ## Contributing 🧑🏻‍💻

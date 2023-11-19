@@ -1,10 +1,6 @@
 {
-  "extends": ["@awdware/eslint-config-nodejs"],
+  "extends": ["@ngneers/eslint-config"],
   "parserOptions": {
     "project": "./tsconfig.json"
-  },
-  "ignorePatterns": ["*spec.ts", "tools/**/*", "src/test.ts"],
-  "rules": {
-    "switch-colon-spacing": "warn"
   }
 }

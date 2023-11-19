@@ -1,9 +1,10 @@
 import { MemoizedProjection } from '@ngrx/store';
+
 import { EqualsFn, defaultArrayEqualsFn, defaultEqualsFn } from './is-equal';
 
 export type TypedMemoizedProjection<
-  TArgs extends any[] = any[],
-  TResult = any,
+  TArgs extends unknown[] = unknown[],
+  TResult = unknown,
 > = MemoizedProjection & {
   memoized: (...args: TArgs) => TResult;
   setResult: (result?: TResult) => void;
@@ -16,7 +17,7 @@ export type TypedMemoizedProjection<
  *
  * @see https://ngrx.io/api/store/defaultMemoize
  */
-export function typeFriendlyDefaultMemoize<TArgs extends any[] = any[], TResult = any>(
+export function typeFriendlyDefaultMemoize<TArgs extends unknown[] = unknown[], TResult = unknown>(
   projectionFn: (...args: TArgs) => TResult,
   isArgumentsEqual: EqualsFn<TArgs> = defaultArrayEqualsFn,
   isResultEqual: EqualsFn<TResult> = defaultEqualsFn

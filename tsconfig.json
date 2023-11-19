@@ -6,9 +6,9 @@
     "lib": ["ES2022", "ESNext", "dom"],
     "declaration": true,
     "outDir": "dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "strict": true,
-    "types": ["node"],
+    "types": ["node", "jest"],
     "sourceMap": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
@@ -17,7 +17,5 @@
     "emitDecoratorMetadata": true,
     "moduleResolution": "node",
     "stripInternal": true
-  },
-  "include": ["src"],
-  "exclude": ["dist", "**/*.spec.ts", "./src/test.ts"]
+  }
 }

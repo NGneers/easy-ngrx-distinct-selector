@@ -1,11 +1,11 @@
 {
-  "name": "easy-ngrx-distinct-selector",
+  "name": "@ngneers/easy-ngrx-distinct-selector",
   "version": "0.1.0",
   "description": "Provides functions to easily create @ngrx/store selectors with equal functions for arguments and result values.",
   "repository": "https://github.com/MaSch0212/easy-ngrx-distinct-selector.git",
   "author": {
-    "name": "Marc Schmidt (MaSch0212)",
-    "url": "https://github.com/MaSch0212"
+    "name": "Marc Schmidt (MaSch0212) @ NGneers",
+    "url": "https://github.com/NGneers"
   },
   "license": "MIT",
   "type": "module",
@@ -16,14 +16,13 @@
     }
   },
   "main": "./dist/cjs/index.js",
-  "prettier": "@awdware/prettier-config",
+  "prettier": "@ngneers/prettier-config",
   "scripts": {
-    "lint": "pnpm eslint ./src/**",
+    "lint": "pnpm eslint ./src/** ./tools/**",
     "test": "jest",
-    "test-coverage": "jest --coverage --collectCoverageFrom=./src/**",
     "prebuild": "pnpm rimraf dist",
-    "build": "pnpm build-esm && pnpm build-cjs",
-    "build-base": "tsc -p .",
+    "build": "pnpm prebuild && pnpm build-esm && pnpm build-cjs",
+    "build-base": "tsc -p ./tsconfig.lib.json",
     "build-esm": "pnpm build-base --outDir dist/esm",
     "build-cjs": "pnpm build-base --outDir dist/cjs --module commonjs && pnpm fix-cjs",
     "fix-cjs": "node --loader ts-node/esm ./tools/fix-cjs.ts"
@@ -38,22 +37,31 @@
     "equal"
   ],
   "peerDependencies": {
-    "@ngrx/store": ">=16 & <18"
+    "@ngrx/store": "17.0.0-rc.0"
   },
   "devDependencies": {
-    "@awdware/eslint-config-base": "^1.2.0",
-    "@awdware/eslint-config-nodejs": "^1.0.0",
-    "@awdware/prettier-config": "^1.0.0",
-    "@ngrx/store": ">=16 & <18",
+    "@angular/platform-browser-dynamic": "^17.0.3",
+    "@angular/compiler": "^17.0.3",
+    "@angular/compiler-cli": "^17.0.3",
+    "@angular/common": "^17.0.3",
+    "@angular/platform-browser": "^17.0.3",
+    "@angular-devkit/build-angular": "^17.0.1",
+    "@ngneers/eslint-config": "^1.0.0",
+    "@ngneers/jest-config": "^1.0.0",
+    "@ngneers/jest-config-angular": "^1.0.0",
+    "@ngneers/prettier-config": "^1.0.0",
     "@types/jest": "^29.5.8",
     "@types/node": "^20.9.1",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-unused-imports": "^3.0.0",
     "immer": "^10.0.3",
     "jest": "^29.7.0",
     "jest-junit": "^16.0.0",
-    "jest-preset-angular": "^13.1.4",
+    "jest-preset-angular": "13.1.4",
     "prettier": "^3.1.0",
     "rimraf": "^5.0.5",
     "ts-jest": "^29.1.1",

@@ -1,12 +1,13 @@
 import { MemoizedSelector, Selector, createSelectorFactory } from '@ngrx/store';
+
 import { EqualsFn } from './is-equal';
 import { typeFriendlyDefaultMemoize } from './type-friendly-default-memoize';
 
-export type DistinctSelectorOptions<TArgs extends any[], TResult> = {
+export type DistinctSelectorOptions<TArgs extends unknown[], TResult> = {
   resultEqual?: EqualsFn<TResult>;
   argsEqual?: EqualsFn<TArgs>;
 };
-export type DistinctSelector<TState, TArgs extends any[], TResult> = MemoizedSelector<
+export type DistinctSelector<TState, TArgs extends unknown[], TResult> = MemoizedSelector<
   TState,
   TResult,
   (...args: TArgs) => TResult
@@ -84,14 +85,16 @@ export function createDistinctSelector<TState, S1, S2, S3, S4, S5, S6, S7, S8, T
   projector: (s1: S1, s2: S2, s3: S3, s4: S4, s5: S5, s6: S6, s7: S7, s8: S8) => TResult,
   options?: DistinctSelectorOptions<[S1, S2, S3, S4, S5, S6, S7, S8], TResult>
 ): DistinctSelector<TState, [S1, S2, S3, S4, S5, S6, S7, S8], TResult>;
-export function createDistinctSelector(...input: any[]): DistinctSelector<any, any[], any> {
+export function createDistinctSelector(
+  ...input: unknown[]
+): DistinctSelector<unknown, unknown[], unknown> {
   const last = input[input.length - 1];
-  let options: DistinctSelectorOptions<any[], any> | undefined = undefined;
+  let options: DistinctSelectorOptions<unknown[], unknown> | undefined = undefined;
   if (typeof last === 'object' && last !== null) {
-    options = input.pop();
+    options = input.pop() as DistinctSelectorOptions<unknown[], unknown> | undefined;
   }
   if (input.length === 1) {
-    input.splice(0, 0, (x: any) => x);
+    input.splice(0, 0, (x: unknown) => x);
   }
   return createSelectorFactory(projector => {
     return typeFriendlyDefaultMemoize(projector, options?.argsEqual, options?.resultEqual);
