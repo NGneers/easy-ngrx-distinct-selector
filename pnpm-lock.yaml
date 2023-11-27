@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@ngrx/store':
-    specifier: 17.0.0-rc.0
-    version: 17.0.0-rc.0(@angular/core@17.0.3)(rxjs@7.8.1)
+    specifier: ^17.0.0
+    version: 17.0.0(@angular/core@17.0.3)(rxjs@7.8.1)
 
 devDependencies:
   '@angular-devkit/build-angular':
@@ -2747,8 +2747,8 @@ packages:
       prettier: 3.1.0
     dev: true
 
-  /@ngrx/store@17.0.0-rc.0(@angular/core@17.0.3)(rxjs@7.8.1):
-    resolution: {integrity: sha512-MR3ObHTA81dziP3MvxrPsYI08wH1zpLALeZz9fTEE5PVhhLxterTWIqwVrqQ2ouL0ZrObiZNul3YZbGrzIciOg==}
+  /@ngrx/store@17.0.0(@angular/core@17.0.3)(rxjs@7.8.1):
+    resolution: {integrity: sha512-jIK4r3IUKPjHmhfgnUYrN7eie+NdFfPNArUQiL+NeiEeuomsYWaUF6PwiRSnRCqbZhRMvqPWiIWcd0/ql5YJlg==}
     peerDependencies:
       '@angular/core': ^17.0.0
       rxjs: ^6.5.3 || ^7.5.0

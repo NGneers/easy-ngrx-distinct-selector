@@ -1,6 +1,6 @@
 {
   "name": "@ngneers/easy-ngrx-distinct-selector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Provides functions to easily create @ngrx/store selectors with equal functions for arguments and result values.",
   "repository": "https://github.com/MaSch0212/easy-ngrx-distinct-selector.git",
   "author": {
@@ -37,7 +37,7 @@
     "equal"
   ],
   "peerDependencies": {
-    "@ngrx/store": "17.0.0-rc.0"
+    "@ngrx/store": "^17.0.0"
   },
   "devDependencies": {
     "@angular/platform-browser-dynamic": "^17.0.3",
