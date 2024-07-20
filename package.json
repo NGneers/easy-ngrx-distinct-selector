@@ -11,21 +11,21 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
     }
   },
-  "main": "./dist/cjs/index.js",
+  "main": "./cjs/index.js",
   "prettier": "@ngneers/prettier-config",
   "scripts": {
     "lint": "pnpm eslint ./src/** ./tools/**",
     "test": "jest",
     "prebuild": "pnpm rimraf dist",
+    "postbuild": "tsx ./tools/post-build.ts",
     "build": "pnpm prebuild && pnpm build-esm && pnpm build-cjs",
     "build-base": "tsc -p ./tsconfig.lib.json",
     "build-esm": "pnpm build-base --outDir dist/esm",
-    "build-cjs": "pnpm build-base --outDir dist/cjs --module commonjs && pnpm fix-cjs",
-    "fix-cjs": "node --loader ts-node/esm ./tools/fix-cjs.ts"
+    "build-cjs": "pnpm build-base --outDir dist/cjs --module commonjs"
   },
   "keywords": [
     "@ngrx",
@@ -69,7 +69,7 @@
     "rimraf": "^6.0.1",
     "rxjs": "^7.8.1",
     "ts-jest": "^29.2.3",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.16.2",
     "typescript": "^5.5.3"
   },
   "packageManager": "pnpm@9.5.0"
