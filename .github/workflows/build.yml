@@ -1,7 +1,5 @@
-name: CI
-
+name: Build
 on:
-  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
@@ -9,30 +7,70 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
-
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4.1.1
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v4.0.0
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18.x
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2.4.0
-        with:
-          version: 8.6.12
-      - name: Install
-        run: pnpm i
-      - name: Build
-        run: pnpm run build
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
       - name: Lint
         run: pnpm run lint
+
       - name: Test
+        id: test
         run: pnpm run test
-        env:
-          FORCE_COLOR: 1
-      # - name: Publish Unit Test Results
-      #   uses: EnricoMi/publish-unit-test-result-action@v1
-      #   if: always()
-      #   with:
-      #     files: junit.xml
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Upload dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - name: Publish @ngneers/easy-ngrx-distinct-selector
+        id: publish
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: dist
+
+      - name: Create Tag for @ngneers/easy-ngrx-distinct-selector
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: v${{ steps.publish.outputs.version }}
+          tag_exists_error: false
