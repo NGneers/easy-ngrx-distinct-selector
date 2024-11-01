@@ -85,6 +85,16 @@ export function createDistinctSelector<TState, S1, S2, S3, S4, S5, S6, S7, S8, T
   projector: (s1: S1, s2: S2, s3: S3, s4: S4, s5: S5, s6: S6, s7: S7, s8: S8) => TResult,
   options?: DistinctSelectorOptions<[S1, S2, S3, S4, S5, S6, S7, S8], TResult>
 ): DistinctSelector<TState, [S1, S2, S3, S4, S5, S6, S7, S8], TResult>;
+export function createDistinctSelector<TState, Slices extends unknown[], TResult>(
+  ...args: [...slices: Selector<TState, unknown>[], projector: unknown] &
+    [
+      ...slices: {
+        [i in keyof Slices]: Selector<TState, Slices[i]>;
+      },
+      projector: (...s: Slices) => TResult,
+      options?: DistinctSelectorOptions<Slices, TResult>,
+    ]
+): MemoizedSelector<TState, TResult, (...s: Slices) => TResult>;
 export function createDistinctSelector(
   ...input: unknown[]
 ): DistinctSelector<unknown, unknown[], unknown> {
