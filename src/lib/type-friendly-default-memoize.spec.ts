@@ -48,7 +48,7 @@ describe('typeFriendlyDefaultMemoize', () => {
     });
 
     it('should return memoized result if results are equal', () => {
-      const { projectionFn, memoize } = createDefaultMemoize({ resultEqual: () => true});
+      const { projectionFn, memoize } = createDefaultMemoize({ resultEqual: () => true });
 
       const result1 = memoize.memoized(1);
       const result2 = memoize.memoized(2);
@@ -135,7 +135,7 @@ describe('typeFriendlyDefaultMemoize', () => {
     });
 
     it('should clear lastResult', () => {
-      const { projectionFn, memoize } = createDefaultMemoize({ resultEqual: () => true});
+      const { projectionFn, memoize } = createDefaultMemoize({ resultEqual: () => true });
 
       const result1 = memoize.memoized(1);
       memoize.reset();
