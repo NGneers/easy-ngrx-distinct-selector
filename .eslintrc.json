@@ -1,6 +1,0 @@
-{
-  "extends": ["@ngneers/eslint-config"],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  }
-}

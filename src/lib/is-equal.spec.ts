@@ -1,4 +1,4 @@
-import { defaultArrayEqualsFn, defaultEqualsFn } from "./is-equal";
+import { defaultArrayEqualsFn, defaultEqualsFn } from './is-equal';
 
 describe('defaultEqualsFn', () => {
   it('should return true if both arguments are the same', () => {
