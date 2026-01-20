@@ -21,8 +21,6 @@ The prior makes a lot more sense, as the logic should likely be shared between a
 
 ✅ Type safe memoize functions
 
-✅ ESM & CJS exports
-
 This library provides a way to easily create selectors with custom memoize functions, which are automatically used when the selector is consumed.
 
 ## Built With 🔧

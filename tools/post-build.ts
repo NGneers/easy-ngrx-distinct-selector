@@ -1,12 +1,5 @@
 import fs from 'fs';
 
-fs.writeFileSync(
-  './dist/cjs/package.json',
-  `{
-  "type": "commonjs"
-}`
-);
-
 // Copy package.json to dist folder
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 delete packageJson.devDependencies;

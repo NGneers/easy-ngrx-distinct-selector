@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
+    "module": "preserve",
     "baseUrl": "./",
     "lib": ["ES2022", "ESNext", "dom"],
     "declaration": true,
@@ -15,7 +15,7 @@
     "strictPropertyInitialization": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "stripInternal": true
   }
 }
