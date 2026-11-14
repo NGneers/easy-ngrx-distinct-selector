@@ -1,0 +1,38 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "pnpm",
+    "analytics": false
+  },
+  "projects": {
+    "easy-ngrx-distinct-selector": {
+      "projectType": "library",
+      "root": "",
+      "sourceRoot": "src",
+      "architect": {
+        "test-build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "polyfills": ["zone.js"]
+          },
+          "configurations": {
+            "development": {}
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": ":test-build:development",
+            "tsConfig": "tsconfig.spec.json",
+            "coverage": true,
+            "coverageReporters": ["text-summary", "lcovonly"],
+            "reporters": ["default", "junit"],
+            "outputFile": ".vitest/junit.xml"
+          }
+        }
+      }
+    }
+  }
+}
