@@ -4,7 +4,7 @@
   "description": "Provides functions to easily create @ngrx/store selectors with equal functions for arguments and result values.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MaSch0212/easy-ngrx-distinct-selector.git"
+    "url": "git+https://github.com/NGneers/easy-ngrx-distinct-selector.git"
   },
   "author": {
     "name": "Marc Schmidt (MaSch0212) @ NGneers",
