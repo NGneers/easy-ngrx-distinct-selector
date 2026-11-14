@@ -75,7 +75,7 @@ describe('createDistinctSelector', () => {
 
   it('should not call the projector if the arguments are equal', () => {
     const appState = getAppState();
-    const projectionFn = jest.fn((names: string[]) => names.length);
+    const projectionFn = vi.fn((names: string[]) => names.length);
     const selector = createDistinctSelector((state: AppState) => state.movie.names, projectionFn);
 
     selector(appState);
@@ -86,7 +86,7 @@ describe('createDistinctSelector', () => {
 
   it('should not call the projector if the argsEqual function returns true', () => {
     const appState = getAppState();
-    const projectionFn = jest.fn((names: string[]) => names.length);
+    const projectionFn = vi.fn((names: string[]) => names.length);
     const selector = createDistinctSelector((state: AppState) => state.movie.names, projectionFn, {
       argsEqual: () => true,
     });
@@ -107,7 +107,7 @@ describe('createDistinctSelector', () => {
     const appState2 = produce(appState1, draft => {
       draft.movie.names = [...draft.movie.names];
     });
-    const projectionFn = jest.fn((movie: AppState['movie']) => movie.names);
+    const projectionFn = vi.fn((movie: AppState['movie']) => movie.names);
     const selector = createDistinctSelector((state: AppState) => state.movie, projectionFn, {
       resultEqual: defaultArrayEqualsFn,
     });

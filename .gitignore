@@ -1,3 +1,5 @@
-.jest/
+.angular/
+.vitest/
+coverage/
 dist/
 node_modules/

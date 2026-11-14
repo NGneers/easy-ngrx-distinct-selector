@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "esbenp.prettier-vscode",
-    "firsttris.vscode-jest-runner",
+    "vitest.explorer",
     "dbaeumer.vscode-eslint"
 
     // Remove comments if repository contains Angular Projects

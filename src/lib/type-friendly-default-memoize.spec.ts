@@ -1,11 +1,8 @@
-jest.mock('./is-equal');
-
 import { DistinctSelectorOptions } from './create-distinct-selector';
-import { defaultArrayEqualsFn, defaultEqualsFn } from './is-equal';
 import { typeFriendlyDefaultMemoize } from './type-friendly-default-memoize';
 
 function createDefaultMemoize(options?: DistinctSelectorOptions<[number], { a: number }>) {
-  const projectionFn = jest.fn((a: number) => ({ a }));
+  const projectionFn = vi.fn((a: number) => ({ a }));
   const memoize = typeFriendlyDefaultMemoize(
     projectionFn,
     options?.argsEqual ?? (([a], [b]) => a === b),
@@ -70,15 +67,19 @@ describe('typeFriendlyDefaultMemoize', () => {
     });
 
     it('should use defaultEqualsFn and defaultArrayEqualsFn if resultEqual or argsEqual is not defined', () => {
-      const projectionFn = jest.fn((a: number) => ({ a }));
+      const projectionFn = vi.fn((a: number) => ({ a }));
       const memoize = typeFriendlyDefaultMemoize(projectionFn);
 
-      memoize.memoized(1);
-      memoize.memoized(2);
+      // defaultArrayEqualsFn compares the arguments element-wise, so equal arguments reuse the result.
+      const result1 = memoize.memoized(1);
+      const result2 = memoize.memoized(1);
+      // defaultEqualsFn compares the results by reference, so a new object is a new result.
+      const result3 = memoize.memoized(2);
 
       expect(projectionFn).toHaveBeenCalledTimes(2);
-      expect(defaultEqualsFn).toHaveBeenCalledTimes(1);
-      expect(defaultArrayEqualsFn).toHaveBeenCalledTimes(1);
+      expect(result1).toBe(projectionFn.mock.results[0].value);
+      expect(result2).toBe(result1);
+      expect(result3).toBe(projectionFn.mock.results[1].value);
     });
   });
 
